@@ -29,8 +29,25 @@
  *
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
+
+ void motorSet ( unsigned char channel,  // motor channel to set from 1-10
+                 int speed               // new signed speed. -127 is full reverse, 127 full forward, 0 off
+               );
+
+int joystickGetAnalog ( unsigned char joystick,   // the joystick slot to check (1 for master, 2 for partner)
+												unsigned char axis        // One of the joystick channels on a VEX Joystick: 1, 2, 3, 4, ACCEL_X, or ACCEL_Y
+							             );
+
 void operatorControl() {
-	while (1) {
+ int power;
+ int turn;
+  while (1) {
+		power = joystickGetAnalog(1, 2);
+		turn = joystickGetAnalog(1, 1);
+		motorSet(2, power + turn);
+		motorSet(3, power - turn);
+
+
 		delay(20);
 	}
 }
