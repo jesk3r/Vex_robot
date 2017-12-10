@@ -11,7 +11,7 @@
  */
 
 #include "main.h"
-#include "chassis.h"
+
 /*
  * Runs the user operator control code. This function will be started in its own task with the
  * default priority and stack size whenever the robot is enabled via the Field Management System
@@ -46,7 +46,20 @@ while (1) {
 		turn = joystickGetAnalog(1, 1);
 		chassisSet(power + turn, power - turn);
 
-		delay(20);
+    clawSet(joystickGetAnalog(1, 4));
+
+    // Lift logic
+    if(joystickGetDigital(1, 6, JOY_UP)){
+      liftSet(127);
+    }
+    else if (joystickGetDigital(1, 6, JOY_DOWN)){
+      liftSet(-127);
+    }
+    else {
+      liftSet(0);
+    }
+
+    delay(20);
 	}
  }
 }

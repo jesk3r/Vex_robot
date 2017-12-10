@@ -26,7 +26,10 @@
 #define MAIN_H_
 
 #include <API.h>
-
+// My header files
+#include "claw.h"
+#include "chassis.h"
+#include "liftSet.h"
 // Allow usage of this file in C++ programs
 #ifdef __cplusplus
 extern "C" {
