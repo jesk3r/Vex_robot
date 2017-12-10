@@ -11,7 +11,7 @@
  */
 
 #include "main.h"
-
+#include "chassis.h"
 /*
  * Runs the user operator control code. This function will be started in its own task with the
  * default priority and stack size whenever the robot is enabled via the Field Management System
@@ -39,15 +39,14 @@ int joystickGetAnalog ( unsigned char joystick,   // the joystick slot to check 
 							             );
 
 void operatorControl() {
- int power;
- int turn;
+while (1) {
+ int power, turn;
   while (1) {
 		power = joystickGetAnalog(1, 2);
 		turn = joystickGetAnalog(1, 1);
-		motorSet(2, power + turn);
-		motorSet(3, power - turn);
-
+		chassisSet(power + turn, power - turn);
 
 		delay(20);
 	}
+ }
 }
