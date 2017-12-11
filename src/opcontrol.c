@@ -44,7 +44,7 @@ while (1) {
   while (1) {
 		power = joystickGetAnalog(1, 2);
 		turn = joystickGetAnalog(1, 1);
-		chassisSet(power + turn, power - turn);
+		chassisSet((power + turn)/2, (power - turn)/2);
 
     clawSet(joystickGetAnalog(1, 4));
 
